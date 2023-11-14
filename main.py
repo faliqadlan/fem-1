@@ -1,4 +1,4 @@
-from sympy import symbols, integrate, Eq
+from sympy import symbols, integrate, Eq, Matrix, linsolve
 import numpy as np
 
 # Definisikan simbol
@@ -19,18 +19,10 @@ for i in range(1, j_max):
     intRArr.append(integrated_R)
 
 
+# Create equations from intRArr
+equations = [Eq(eq, 0) for eq in intRArr]
 
+# Create a system of equations
+system = Matrix(equations)
 
-# # Buat matriks dari array intRArr
-# A = Matrix(np.array(intRArr).reshape(-1, j_max - 1))
-
-# print(A)
-
-# b = Matrix([1, 1 / 2, 1 / 3])
-
-# print(b)
-
-# # Selesaikan sistem persamaan linear
-# solution = linsolve((A, b), q)
-
-# print(solution)
+print(system)
